@@ -8,11 +8,12 @@ const router = express.Router();
 const Service = require('../services/productsServices');
 const Controller = require('../controllers/productsController');
 
-const { validateProduct } = Service;
-const { insertProduct, getAll, getById } = Controller;
+const { validateName, validateQuantity, databaseCheck } = Service;
+const { insertProduct, getAll, getById, updateById } = Controller;
 
-router.post('/', rescue(validateProduct), rescue(insertProduct));
+router.post('/', validateName, validateQuantity, rescue(databaseCheck), rescue(insertProduct));
 router.get('/:id', rescue(getById));
 router.get('/', rescue(getAll));
+router.put('/:id', validateName, validateQuantity, rescue(updateById));
 
 module.exports = router;

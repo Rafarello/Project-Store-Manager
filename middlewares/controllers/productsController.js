@@ -17,11 +17,20 @@ async function getById(req, res) {
   const { id } = req.params;
   const product = await Model.getById(id);
   if (!product) return res.status(404).json({ message: 'Product not found' }); 
-  res.status(200).json(product);
+  return res.status(200).json(product);
+}
+
+async function updateById(req, res) {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+  await Model.updateProductById(id, name, quantity);
+  const product = await Model.getById(id);
+  return res.status(200).json(product);
 }
 
 module.exports = {
   getAll,
   insertProduct,
   getById,
+  updateById,
 };
