@@ -17,6 +17,8 @@ const validateName = (req, res, next) => {
 
 const validateQuantity = (req, res, next) => { 
   const { quantity } = req.body;
+  console.log(quantity);
+  console.log(typeof quantity);
   if (!quantity && quantity !== 0) {
     return res.status(400).json({ message: '"quantity" is required' }); 
   }
@@ -32,8 +34,8 @@ const databaseCheck = async (req, res, next) => {
   const database = await Model.getAll();
   const alreadyExists = database.find((p) => p.name === name);
   if (alreadyExists) {
-    return res.status(422)
-      .json({ message: '"quantity" must be a number larger than or equal to 1' }); 
+    return res.status(409)
+      .json({ message: 'Product already exists' }); 
   } 
   next();
 };
