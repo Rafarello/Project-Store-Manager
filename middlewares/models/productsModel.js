@@ -17,7 +17,14 @@ const getAll = async () => {
   return data;
 };
 
+const getById = async (id) => {
+  const database = await getAll();
+  const queryProduct = database.find((p) => p.id === Number(id)); 
+  return queryProduct;
+};
+
 module.exports = {
   insertProduct,
   getAll,
+  getById,
 };

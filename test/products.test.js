@@ -2,7 +2,7 @@ const frisby = require("frisby");
 const mysql = require("mysql2/promise");
 const Importer = require("mysql-import");
 require("dotenv").config();
-
+jest.setTimeout(10000);
 describe("Products", () => {
   const products = [
     { name: "Martelo de Thor", quantity: 10 },
