@@ -5,7 +5,7 @@ const Model = require('../models/productsModel');
 async function insertProduct(req, res) {
     const { name, quantity } = req.body;
     const insertId = await Model.insertProduct(name, quantity);
-    res.status(200).json(insertId);
+    res.status(201).json({ id: insertId, name, quantity });
 }
 
 async function getAll(req, res) {

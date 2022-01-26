@@ -16,15 +16,14 @@ const validateName = async (name) => {
   return { status: 200, message: 'Name is Valid' };
 };
 
-const validateQuantity = (quantity) => {
-  const invalidTypeCase = typeof quantity === 'string' || quantity < 0;
-  if (!quantity) {
+const validateQuantity = (quantity) => { 
+  if (!quantity && quantity !== 0) {
     return {
       status: 400,
       message: '"quantity" is required',
     };
   }
-  if (invalidTypeCase) {
+  if (typeof quantity === 'string' || quantity <= 0) {
     return {
       status: 422,
       message: '"quantity" must be a number larger than or equal to 1',
@@ -37,10 +36,11 @@ const validateQuantity = (quantity) => {
 const validateProduct = async (req, res, next) => {
   const { name, quantity } = req.body;
   const { status: nameStatus, message: nameMessage } = await validateName(name);
-  const { status: quantityStatus, quantityMessage } = validateQuantity(quantity);
+  const { status: quantityStatus, message: quantityMessage } = validateQuantity(quantity);
   if (nameStatus !== 200) {
     return res.status(nameStatus).json({ message: nameMessage });
   }
+
   if (quantityStatus !== 200) {
     return res.status(quantityStatus).json({ message: quantityMessage });
   }
