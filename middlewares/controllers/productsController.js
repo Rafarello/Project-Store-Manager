@@ -29,9 +29,18 @@ async function updateById(req, res) {
   return res.status(200).json(product);
 }
 
+async function deleteById(req, res) {
+  const { id } = req.params;
+  const database = await Model.getAll();
+  const product = database.find((p) => p.id === Number(id));
+  const [{ affectedRows }] = await Model.deleteProductById(id);
+  if (affectedRows) return res.status(200).json(product);
+}
+
 module.exports = {
   getAll,
   insertProduct,
   getById,
   updateById,
+  deleteById,
 };
