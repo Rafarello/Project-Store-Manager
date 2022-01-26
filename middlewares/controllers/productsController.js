@@ -23,7 +23,8 @@ async function getById(req, res) {
 async function updateById(req, res) {
   const { id } = req.params;
   const { name, quantity } = req.body;
-  await Model.updateProductById(id, name, quantity);
+  const [{ affectedRows }] = await Model.updateProductById(id, name, quantity);
+  if (affectedRows === 0) return res.status(404).json({ message: 'Product not found' });
   const product = await Model.getById(id);
   return res.status(200).json(product);
 }
