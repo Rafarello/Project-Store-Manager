@@ -8,12 +8,12 @@ const router = express.Router();
 const Service = require('../services/salesServices');
 const Controller = require('../controllers/salesController');
 
-const { 
-    validateId,
-    validateQuantity } = Service;
-  const { 
-    insertNewSale } = Controller;
+const {
+  validateId,
+  validateQuantity,
+  validateQuantityType } = Service;
+const { insertNewSale } = Controller;
 
-router.post('/', validateId, validateQuantity, rescue(insertNewSale));
+router.post('/', validateId, validateQuantity, validateQuantityType, rescue(insertNewSale));
 
 module.exports = router;

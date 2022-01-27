@@ -65,7 +65,7 @@ describe('Sales', () => {
     })
   }
 
-  describe('5 - Crie um endpoint para cadastrar vendas', () => {
+  describe.only('5 - Crie um endpoint para cadastrar vendas', () => {
     it('Será validado que não é possível cadastrar compras sem o campo `product_id`', async () => {
       let result;
       let resultProductId;

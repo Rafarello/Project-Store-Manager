@@ -4,37 +4,45 @@
 
 const validateId = (req, res, next) => {
   const salesArray = req.body;
-  if (Array.isArray(salesArray)) {
-    salesArray.forEach((sale) => {
-    if (sale.product_id === undefined) {
+
+  for (let index = 0; index < salesArray.length; index += 1) {
+    const { product_id: id } = salesArray[index];
+    if (!id && id !== 0) {
       return res.status(400)
         .json({ message: '"product_id" is required' });
     }
-  });
-  } else {
-    return res.status(400)
-      .json({ message: 'Entrada no formato errado' });
   }
-  
   next();
 };
 
 const validateQuantity = (req, res, next) => {
   const salesArray = req.body;
-  
-  salesArray.forEach((sale) => {
-    if (sale.quantity === undefined) {
+
+  for (let index = 0; index < salesArray.length; index += 1) {
+    const { quantity } = salesArray[index];
+    if (!quantity && quantity !== 0) {
       return res.status(400)
         .json({ message: '"quantity" is required' });
-    } if (typeof sale.quantity === 'string' || sale.quantity <= 0) {
+    }
+  }
+  next();
+};
+
+const validateQuantityType = (req, res, next) => {
+  const salesArray = req.body;
+
+  for (let index = 0; index < salesArray.length; index += 1) {
+    const { quantity } = salesArray[index];
+    if (typeof quantity !== 'number' || quantity <= 0) {
       return res.status(422)
         .json({ message: '"quantity" must be a number larger than or equal to 1' });
     }
-  });
+  }
   next();
 };
 
 module.exports = {
   validateId,
   validateQuantity,
+  validateQuantityType,
 };
