@@ -12,8 +12,10 @@ const {
   validateId,
   validateQuantity,
   validateQuantityType } = Service;
-const { insertNewSale } = Controller;
+const { insertNewSale, getSaleById, getAllSales } = Controller;
 
 router.post('/', validateId, validateQuantity, validateQuantityType, rescue(insertNewSale));
+router.get('/:id', rescue(getSaleById));
+router.get('/', rescue(getAllSales));
 
 module.exports = router;

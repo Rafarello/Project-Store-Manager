@@ -16,6 +16,23 @@ const insertNewSale = async (req, res) => {
   return res.status(201).json({ id: saleId, itemsSold: newSale });
 };
 
+// Código abaixo (Object.assign()), visto em:
+// https://stackoverflow.com/questions/1168807/how-can-i-add-a-key-value-pair-to-a-javascript-object
+
+async function getSaleById(req, res) {
+  const { id } = req.params;
+  const querySale = await Model.getSaleById(id);
+  if (querySale.length < 1) return res.status(404).json({ message: 'Sale not found' });
+  return res.status(200).json(querySale);
+}
+
+async function getAllSales(req, res) {
+  const database = await Model.getAllSales();
+  res.status(200).json(database);
+}
+
 module.exports = {
   insertNewSale,
+  getSaleById,
+  getAllSales,
 };
