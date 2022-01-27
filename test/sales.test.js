@@ -2,6 +2,7 @@ const frisby = require('frisby');
 const mysql = require('mysql2/promise');
 const Importer = require('mysql-import');
 require('dotenv').config();
+jest.setTimeout(20000);
 describe('Sales', () => {
   const products = [
     { name: 'Martelo de Thor', quantity: 10 },
@@ -64,7 +65,7 @@ describe('Sales', () => {
     })
   }
 
-  describe('5 - Crie um endpoint para cadastrar vendas', () => {
+  describe.only('5 - Crie um endpoint para cadastrar vendas', () => {
     it('Será validado que não é possível cadastrar compras sem o campo `product_id`', async () => {
       let result;
       let resultProductId;
