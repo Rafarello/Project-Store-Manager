@@ -13,7 +13,7 @@ const insertNewSale = async (req, res) => {
       console.error(error);
     }
   });
-  res.status(201).json({ id: saleId, itemsSold: newSale });
+  return res.status(201).json({ id: saleId, itemsSold: newSale });
 };
 
 module.exports = {
