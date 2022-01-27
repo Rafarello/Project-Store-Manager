@@ -18,7 +18,7 @@ const registerItemSold = async (saleId, productId, quantity) => {
       VALUES (?, ?, ?)`;
   try {
     const data = await connection.execute(query, [saleId, productId, quantity]);    
-    console.log(data);
+    return data;
   } catch (error) {
     console.error(error);
   }

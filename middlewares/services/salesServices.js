@@ -4,18 +4,24 @@
 
 const validateId = (req, res, next) => {
   const salesArray = req.body;
-  salesArray.forEach((sale) => {
+  if (Array.isArray(salesArray)) {
+    salesArray.forEach((sale) => {
     if (sale.product_id === undefined) {
       return res.status(400)
         .json({ message: '"product_id" is required' });
     }
   });
+  } else {
+    return res.status(400)
+      .json({ message: 'Entrada no formato errado' });
+  }
   
   next();
 };
 
 const validateQuantity = (req, res, next) => {
   const salesArray = req.body;
+  
   salesArray.forEach((sale) => {
     if (sale.quantity === undefined) {
       return res.status(400)
