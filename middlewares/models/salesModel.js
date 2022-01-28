@@ -26,7 +26,7 @@ const registerItemSold = async (saleId, productId, quantity) => {
 
 const getAllSales = async () => {
   const query = `
-    SELECT  sales.id, sales.date, sales_products.product_id, sales_products.quantity
+    SELECT sales.id as saleId, sales.date, sales_products.product_id, sales_products.quantity
     FROM sales JOIN sales_products
     ON sales.id = sales_products.sale_id;`;
   const [data] = await connection.execute(query);

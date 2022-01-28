@@ -28,7 +28,8 @@ async function getSaleById(req, res) {
 
 async function getAllSales(req, res) {
   const database = await Model.getAllSales();
-  res.status(200).json(database);
+  console.log(database.length);
+  return res.status(200).json(database);
 }
 
 module.exports = {
