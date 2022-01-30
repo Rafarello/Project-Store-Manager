@@ -3,9 +3,12 @@ const { expect } = require('chai');
 
 const connection = require('../../models/connection');
 const ProductsModel = require('../../models/productsModel')
+const SalesModel = require('../../models/salesModel')
 
+const product_id1 = 1;
 const product_name1 = 'product_name1';
 const product_quantity1 = 100;
+const product_id2 = 2;
 const product_name2 = 'product_name2';
 const product_quantity2 = 200;
 
@@ -162,4 +165,100 @@ describe('Deletar um produto do DB', () => {
     const [{affectedRows}] = await ProductsModel.deleteProductById(1);
     expect(affectedRows).to.equal(1);
   });
+})
+
+describe('Insere uma nova venda no DB', () => {
+
+  before(async () => {
+    const execute = [{ insertId: 1 }];
+
+    sinon.stub(connection, 'execute').resolves(execute);
+  });
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  describe('Quando é inserida com sucesso', () => {
+
+    it('Deve retornar o ID da venda', async () => {
+      const response = await SalesModel.registerNewSale();
+      expect(response).to.equal(1);
+    });
+    it('Deve retornar 1 se foi feito o registro, 0 se não', async () => {
+      const saleId = 1;
+      const [{affectedRows}] = await SalesModel.registerItemSold(saleId, product_id1, product_quantity1);
+    })
+  });
+
+});
+
+describe('Listar todas as vendas no DB', () => {
+
+  before(async () => {
+    const execute = [[
+      {
+        saleId: 1,
+        date: '2022-01-30T15:49:10.000Z',
+        product_id: 2,
+        quantity: 2
+      },
+      {
+        saleId: 1,
+        date: '2022-01-30T15:49:10.000Z',
+        product_id: 3,
+        quantity: 5
+      }
+    ]
+    ];
+
+    sinon.stub(connection, 'execute').resolves(execute);
+  });
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  describe('Quando é listado com sucesso', () => {
+
+    it('Deve retornar o objeto com as vendas', async () => {
+      const response = await SalesModel.getAllSales();
+      expect(response).to.be.a('array')
+    });
+    it('Deve possuir todas as propriedades', async () => {
+      const response = await SalesModel.getAllSales();
+      expect(response[0]).to.have.all.keys(['saleId', 'date', 'product_id', 'quantity'])
+    });
+  });
+});
+
+describe('Listar uma venda especifica com ID do DB', () => {
+
+  before(async () => {
+    const execute =[
+      [
+        { date: '2022-01-30T15:49:10.000Z', product_id: 2, quantity: 2 },
+        { date: '2022-01-30T15:49:10.000Z', product_id: 3, quantity: 5 }
+      ]
+    ];
+
+    sinon.stub(connection, 'execute').resolves(execute);
+  });
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  describe('Quando é listado com sucesso', () => {
+
+    it('Deve retornar o objeto com as vendas', async () => {
+      const response = await SalesModel.getSaleById(product_id1);
+      expect(response).to.be.a('array')
+    });
+    it('Deve possuir todas as propriedades', async () => {
+      const response = await SalesModel.getSaleById(product_id1);
+      expect(response[0]).to.have.all.keys(['date', 'product_id', 'quantity'])
+    });
+  });
+  
 })

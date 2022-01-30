@@ -40,7 +40,6 @@ const getSaleById = async (id) => {
     ON sales.id = sales_products.sale_id
     WHERE sales.id = ?;`;
   const [data] = await connection.execute(query, [id]);
-  console.log(data);
   return data;
 };
 
