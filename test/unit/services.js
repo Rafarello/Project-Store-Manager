@@ -19,7 +19,10 @@ describe('Insere um novo produto no DB', () => {
 // https://stackoverflow.com/questions/28053206/node-express-testing-mock-res-statusstatus-jsonobj
 
   before(() => {
-    request.body = {};
+    request.body = {
+      name: product_name1,
+      quantity: product_quantity1,
+    };
     response = {
         send: () => sinon.stub().returns(),
         json: function(message){
@@ -37,8 +40,8 @@ describe('Insere um novo produto no DB', () => {
   describe('Quando é inserido com formato correto', () => {
 
     it('Não deve retornar nenhuma mensagem de erro', () => {
-      const resTest = ProductsService.validateName(request, response, next)
-      console.log(resTest);
+      const errorMessage = ProductsService.validateName(request, response, next);
+      expect(errorMessage).to.equal(undefined);
     })
   })
 
