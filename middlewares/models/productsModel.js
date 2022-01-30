@@ -19,7 +19,7 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const database = await getAll();
-  const queryProduct = database.find((p) => p.id === Number(id)); 
+  const queryProduct = database.find((p) => p.id === Number(id));
   return queryProduct;
 };
 

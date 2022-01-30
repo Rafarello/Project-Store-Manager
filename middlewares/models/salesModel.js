@@ -33,19 +33,6 @@ const getAllSales = async () => {
   return data;
 };
 
-const getAllSaleDates = async () => {
-  const query = `
-    SELECT * FROM sales`;
-  const [data] = await connection.execute(query);
-  return data;
-};
-
-const getSaleDateById = async (id) => {
-  const database = await getAllSaleDates();
-  const { date: queryDate } = database.find((p) => p.id === Number(id));
-  return queryDate;
-};
-
 const getSaleById = async (id) => {
   const query = `
     SELECT sales.date, sales_products.product_id, sales_products.quantity
@@ -62,6 +49,4 @@ module.exports = {
   registerItemSold,
   getAllSales,
   getSaleById,
-  getAllSaleDates,
-  getSaleDateById,
 };
