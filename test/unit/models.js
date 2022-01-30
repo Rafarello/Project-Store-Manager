@@ -1,8 +1,8 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 
-const connection = require('../../middlewares/models/connection');
-const ProductsModel = require('../../middlewares/models/productsModel')
+const connection = require('../../models/connection');
+const ProductsModel = require('../../models/productsModel')
 
 const product_name1 = 'product_name1';
 const product_quantity1 = 100;
@@ -148,5 +148,18 @@ describe('Atualizar os produtos do DB', () => {
 });
 
 describe('Deletar um produto do DB', () => {
+  before(async () => {
+    const execute = [{ affectedRows: 1 }];
 
+    sinon.stub(connection, 'execute').resolves(execute);
+  });
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  it('Deve retornar 0 se não teve produtos deletados, 1 se sim', async () => {
+    const [{affectedRows}] = await ProductsModel.deleteProductById(1);
+    expect(affectedRows).to.equal(1);
+  });
 })
