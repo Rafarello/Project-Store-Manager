@@ -10,8 +10,8 @@
   - [Conexão com o Banco](#conexão-com-o-banco)
   - [Tabelas](#tabelas)
 - [Ferramenta de qualidade de código](#Ferramenta-de-qualidade-de-código)
-  - [Linter](#linter)
-  - 
+- [Como iniciar o projeto](#Como-iniciar-o-projeto)
+
 ---
 
 # Habilidades
@@ -20,6 +20,7 @@ Nesse projeto, foi colocado em prática:
 
 - O entendimento do funcionamento da camada de Model;
 - A delegação de responsabilidades específicas para essa camada;
+- A realização de queries utilizando mysql;
 - A conexão da aplicação com diferentes bancos de dados;
 - A estruturação da aplicação em camadas;
 - A delegação de responsabilidades específicas para cada parte do app;
@@ -118,4 +119,12 @@ Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install
 Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
 
+# Como iniciar o projeto
 
+## 1. Fazer o clone em sua máquina
+
+## 2. Fazer as instalações das dependências digitando `npm install` no terminal
+
+## 3. Usar o comando de criar e semear o banco de dados `npm run prestart`
+
+## 4. Para iniciar o projeto, utilize `npm run install`
