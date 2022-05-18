@@ -127,4 +127,4 @@ Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
 
 3. Usar o comando de criar e semear o banco de dados `npm run prestart`
 
-4. Para iniciar o projeto, utilize `npm run install`
+4. Para iniciar o projeto, utilize `npm run start`
