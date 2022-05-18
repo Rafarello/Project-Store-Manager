@@ -5,7 +5,7 @@
 # Sumário
 
 - [Habilidades](#habilidades)
-  - [O que foi desenvolvido](#O que foi desenvolvido)
+  - [O que foi desenvolvido](#O-que-foi-desenvolvido)
 - [Como desenvolver](#como-desenvolver)
   - [Padrões e conexões](#padrões-e-conexões)
   - [Conexão com o Banco](#conexão-com-o-banco)
