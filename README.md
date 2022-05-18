@@ -6,7 +6,7 @@
 
 - [Habilidades](#habilidades)
   - [O que foi desenvolvido](#O-que-foi-desenvolvido)
-- [Padrões e conexões ⚠️](#Padrões-e-conexões-⚠️)
+- [Padrões e conexões](#Padrões-e-conexões)
   - [Conexão com o Banco](#conexão-com-o-banco)
   - [Tabelas](#tabelas)
 - [Requisitos do projeto](#requisitos-do-projeto)
