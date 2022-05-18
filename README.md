@@ -6,8 +6,7 @@
 
 - [Habilidades](#habilidades)
   - [O que foi desenvolvido](#O-que-foi-desenvolvido)
-- [Como desenvolver](#como-desenvolver)
-  - [Padrões e conexões](#padrões-e-conexões)
+- [Padrões e conexões ⚠️ ](#Padrões-e-conexões-⚠️)
   - [Conexão com o Banco](#conexão-com-o-banco)
   - [Tabelas](#tabelas)
 - [Requisitos do projeto](#requisitos-do-projeto)
@@ -61,9 +60,7 @@ A API construída trata-se de um sistema de gerenciamento de vendas, onde é pos
 
 ---
 
-# Como desenvolver
-
-## Padrões e conexões - ⚠️ Leia-os atentamente e siga à risca o que for pedido. ⚠️
+# Padrões e conexões ⚠️ 
 
 ### Todos os seus endpoints devem estar no padrão REST
 
@@ -83,29 +80,7 @@ A API construída trata-se de um sistema de gerenciamento de vendas, onde é pos
 
 - Controllers devem estar na pasta `controllers`, **na raiz do projeto**
 
-### Para escrever seus própios arquivos de teste
-
-- Utilize o **mocha**, **chai** e **sinon** para escrever seus testes
-
-- Coloque todos os testes de `models` no arquivo `test/unit/models.js`
-
-- Coloque todos os testes de `services` no arquivo `test/unit/services.js`
-
-- Coloque todos os testes de `controllers` no arquivo `test/unit/controllers.js`
-
-### Arquivo index.js
-
-Há um arquivo `index.js` no repositório. Não remova, nele, o seguinte trecho de código:
-
-```javascript
-app.get('/', (request, response) => {
-  response.send();
-});
-```
-
-Isso está configurado para o avaliador funcionar.
-
-### Conexão com o Banco:
+## Conexão com o Banco:
 
 **⚠️ IMPORTANTE! ⚠️**
 
@@ -153,11 +128,11 @@ A tabela `sales_products`, é a tabela que faz o relacionamento `N:N` entre `pro
 ![Tabela Vendas-Produtos](./public/tablesalesproducts.png)
 
 
-# Requisitos do projeto
+# Ferramenta de qualidade de código
 
 ## Linter
 
-Usaremos o [ESLint](https://eslint.org/) para fazer a análise estática do seu código.
+O [ESLint](https://eslint.org/) foi utilizado para fazer a análise estática do seu código.
 
 Este projeto já vem com as dependências relacionadas ao _linter_ configuradas no arquivos `package.json`.
 
@@ -165,41 +140,6 @@ Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install
 
 Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
----
-
-## Testes
-
-Usaremos o [Jest]() e o [Frisby] para fazer os testes de api.
-
-Na seção [Conexão com o Banco](#conexão-com-o-banco), está especificado como a conexão deve ser feita, para que os testes rodem.
-
-Este projeto já vem configurado e com suas dependências.
-
-Para poder executar os testes basta executar comando `npm tests` e o resultado será igual o abaixo:
-
-![Testes](./public/testejestfrisby.png)
-
-**Atenção:** Após rodar os testes, seu banco de dados local será dropado, lembre-se de importá-lo novamente.
-
-## Dica: desativando testes
-
-Especialmente no início, quando a maioria dos testes está falhando, a saída após executar os testes é bastante poluída. Você pode desabilitar temporariamente um teste utilizando a função `skip` junto à função `it`. Como o nome indica, esta função "pula" um teste:
-
-```js
-it.skip('it includes the text `Movie Cards Library` inside a h1 tag', () => {
-  wrapper = shallow(<Header />);
-
-  expect(wrapper.find('header h1').text()).toBe('Movie Cards Library');
-});
-```
-
-Na saída da execução dos testes, você verá um <img src="./public/orange-circle.png" width="15px"> indicando que o teste está sendo pulado:
-
-![image](./public/skipped-test.png)
-
-Uma estratégia é pular todos os testes no início e ir implementando um teste de cada vez, removendo dele a função `skip`.
-
-⚠️ Lembre-se de não entregar o projeto com nenhum teste ignorado. Testes ignorados serão tratados como testes falhando.
 
 ## Lista de requisitos
 
